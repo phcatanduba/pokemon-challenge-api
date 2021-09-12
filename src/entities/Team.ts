@@ -17,8 +17,8 @@ export default class Team {
   @Column()
   colorOne: string;
 
-  @Column()
-  colorTwo?: string;
+  @Column({ nullable: true })
+  colorTwo: string;
 
   @Column()
   teamName: string;
