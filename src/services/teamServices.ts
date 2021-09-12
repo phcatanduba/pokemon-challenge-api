@@ -22,9 +22,11 @@ export async function get() {
   const teams = await getRepository(Team).find();
   const teamsName: any = {};
   const result = [];
-  teams.forEach((team) => {
+  teams.forEach((team, i) => {
     if (!(team.teamName in teamsName)) {
       teamsName[team.teamName] = [team];
+    } else if (teamsName[team.teamName].length === 6) {
+      teamsName[i] = [team];
     } else {
       teamsName[team.teamName].push(team);
     }
