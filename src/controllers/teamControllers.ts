@@ -16,8 +16,8 @@ export async function create(req: Request, res: Response) {
 
 export async function get(req: Request, res: Response) {
   try {
-    await teamServices.get();
-    res.sendStatus(200);
+    const result = await teamServices.get();
+    res.send(result);
   } catch (e) {
     console.log(e);
     res.sendStatus(500);

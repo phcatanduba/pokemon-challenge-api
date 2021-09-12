@@ -20,5 +20,18 @@ export async function create(team: TeamData[]) {
 
 export async function get() {
   const teams = await getRepository(Team).find();
-  return teams;
+  const teamsName: any = {};
+  const result = [];
+  teams.forEach((team) => {
+    if (!(team.teamName in teamsName)) {
+      teamsName[team.teamName] = [team];
+    } else {
+      teamsName[team.teamName].push(team);
+    }
+  });
+
+  for (let key in teamsName) {
+    result.push(teamsName[key]);
+  }
+  return result;
 }
