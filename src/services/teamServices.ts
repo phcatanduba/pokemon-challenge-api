@@ -16,3 +16,8 @@ export async function create(team: TeamData[]) {
   });
   return team;
 }
+
+export async function get() {
+  const teams = await getRepository(Team).find();
+  return teams;
+}
