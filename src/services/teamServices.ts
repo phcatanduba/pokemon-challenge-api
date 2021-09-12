@@ -26,7 +26,12 @@ export async function get() {
     if (!(team.teamName in teamsName)) {
       teamsName[team.teamName] = [team];
     } else if (teamsName[team.teamName].length === 6) {
-      teamsName[i] = [team];
+      const index = Math.floor(i / 6);
+      if (!(team.teamName + `${index}` in teamsName)) {
+        teamsName[team.teamName + `${index}`] = [team];
+      } else {
+        teamsName[team.teamName + `${index}`].push(team);
+      }
     } else {
       teamsName[team.teamName].push(team);
     }
